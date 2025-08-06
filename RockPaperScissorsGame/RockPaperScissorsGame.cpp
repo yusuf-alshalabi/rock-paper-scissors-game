@@ -53,10 +53,20 @@ enWin whoWins(enChoices player1Choice, enChoices computerChoice)
 
 short readHowManyRounds() {
     short rounds = 0;
-    do {
-        cout << "How many Rounds 1 to 10 ?" << endl;
+    while (true) {
+        cout << "How many Rounds [1 to 10]? ";
         cin >> rounds;
-    } while (rounds < 1 || rounds>10);
+
+        if (cin.fail() || rounds < 1 || rounds > 10) {
+            cin.clear(); 
+            cin.ignore(1000, '\n'); 
+            cout << "Invalid input. Please enter a number between 1 and 10.\n";
+        }
+        else {
+            cin.ignore(1000, '\n'); 
+            break;
+        }
+    }
     return rounds;
 }
 
