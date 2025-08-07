@@ -69,13 +69,22 @@ short readHowManyRounds() {
     }
     return rounds;
 }
-
 enChoices readPlayerChoice() {
-    short choice = 0;
-    do {
-        cout << "Your Choice : [1]:Stone, [2]:Paper, [3]:Scissors ?";
+    short choice;
+    while (true) {
+        cout << "Your Choice : [1]:Stone, [2]:Paper, [3]:Scissors ? ";
         cin >> choice;
-    } while (choice > 3 || choice < 1);
+
+        if (cin.fail() || choice < 1 || choice > 3) {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Invalid input. Please enter 1, 2, or 3.\n";
+        }
+        else {
+            cin.ignore(1000, '\n');
+            break;
+        }
+    }
     return (enChoices)choice;
 }
 
