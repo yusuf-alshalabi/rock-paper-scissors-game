@@ -50,19 +50,13 @@ enWin whoWins(enChoices player1Choice, enChoices computerChoice) {
 // Reads how many rounds the player wants to play (1–10)
 short readHowManyRounds() {
     short rounds = 0;
-    while (true) {
-        cout << "How many Rounds [1 to 10]? ";
-        cin >> rounds;
-
-        if (cin.fail() || rounds < 1 || rounds > 10) {
+    cout << "How many Rounds [1 to 10]? ";
+    cin >> rounds;
+    while (cin.fail() || rounds < 1 || rounds > 10) {
             cin.clear();
-            cin.ignore(1000, '\n');
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             cout << "Invalid input. Please enter a number between 1 and 10.\n";
-        }
-        else {
-            cin.ignore(1000, '\n');
-            break;
-        }
+            cin >> rounds;
     }
     return rounds;
 }
@@ -70,19 +64,13 @@ short readHowManyRounds() {
 // Reads and validates the player's choice (stone, paper, or scissors)
 enChoices readPlayerChoice() {
     short choice;
-    while (true) {
-        cout << "Your Choice : [1]:Stone, [2]:Paper, [3]:Scissors ? ";
-        cin >> choice;
-
-        if (cin.fail() || choice < 1 || choice > 3) {
+    cout << "Your Choice : [1]:Stone, [2]:Paper, [3]:Scissors ? ";
+    cin >> choice;
+    while (cin.fail() || choice < 1 || choice > 3) {
             cin.clear();
-            cin.ignore(1000, '\n');
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             cout << "Invalid input. Please enter 1, 2, or 3.\n";
-        }
-        else {
-            cin.ignore(1000, '\n');
-            break;
-        }
+            cin >> choice;
     }
     return (enChoices)choice;
 }
